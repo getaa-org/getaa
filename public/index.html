@@ -1,0 +1,241 @@
+<!-- HTML5 Declaration -->
+<!DOCTYPE html>
+<!-- W3C recommends declaring the primary language -->
+<html lang="en">
+	<!-- Head element for backward compatability with HTML4 -->
+	<head>
+		<!-- ASCII and Standard Unicode Characters -->
+		<meta charset=utf-8 />
+		<!-- Mobile viewing enhancement -->
+    	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+		<!-- Description should be roughly 155 characters, no double quotes, use keywords -->
+		<meta name="description" content="Find AA meetings." />
+		<!-- Format as Primary Keyword - Secondary Keyword | Brand Name, keep under 55 characters -->
+		<title>Find AA Meetings</title>
+		<!-- Minimize the number of CSS files for performance -->
+		<link href="/css/getaa.min.css" rel="stylesheet" type="text/css" />
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/favicons/manifest.json">
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png">
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+		<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<noscript>
+			<strong>Warning !</strong>
+			Because your browser does not support HTML5, some elements are created using JavaScript.
+			Unfortunately your browser has disabled scripting. Please enable it in order to display this page.
+		</noscript>
+		<![endif]-->
+	</head>
+	<body>
+		<div id="map"></div>
+		<div id="menu" class="menuHidden">
+      <div id="mapControls">
+        <div class="dayDiv">
+        	<span class="days day-unselected" id="sunday">S</span>
+        	<span class="days day-unselected" id="monday">M</span>
+        	<span class="days day-unselected" id="tuesday">T</span>
+        	<span class="days day-unselected" id="wednesday">W</span>
+        	<span class="days day-unselected" id="thursday">T</span>
+        	<span class="days day-unselected" id="friday">F</span>
+        	<span class="days day-unselected" id="saturday">S</span>
+        </div>
+        <hr class="hrTopTop">
+        <span class="checkboxSpan">
+        	<span class="cbxWrapper">
+            <label id="lblOpenMeeting" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect choices mdl-badge mdl-badge--overlap" data-badge="0" for="openMeeting">
+              <input type="checkbox" id="openMeeting" class="mdl-checkbox__input" checked>
+              <span class="mdl-checkbox__label checkbox-text">
+                Open Meeting
+              </span>
+            </label>
+        	</span>
+        	<span class="cbxWrapper">
+            <label id="lblClosedMeeting" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect choices mdl-badge mdl-badge--overlap" data-badge="0" for="closedMeeting">
+              <input type="checkbox" id="closedMeeting" class="mdl-checkbox__input" checked>
+              <span class="mdl-checkbox__label checkbox-text">
+                Closed Meeting
+              </span>
+            </label>
+        	</span>
+        	<span class="cbxWrapper">
+            <label id="lblMensOnly" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect choices mdl-badge mdl-badge--overlap" data-badge="0" for="mensOnly">
+              <input type="checkbox" id="mensOnly" class="mdl-checkbox__input" checked>
+              <span class="mdl-checkbox__label checkbox-text">
+                Mens Only
+              </span>
+            </label>
+        	</span>
+        	<span class="cbxWrapper">
+            <label id="lblWomensOnly" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect choices mdl-badge mdl-badge--overlap" data-badge="0" for="womensOnly">
+              <input type="checkbox" id="womensOnly" class="mdl-checkbox__input" checked>
+              <span class="mdl-checkbox__label checkbox-text">
+                Womens Only
+              </span>
+            </label>
+        	</span>
+        	<span class="cbxWrapper">
+            <label id="lblChildcare" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect choices mdl-badge mdl-badge--overlap" data-badge="0" for="childcare">
+              <input type="checkbox" id="childcare" class="mdl-checkbox__input" checked>
+              <span class="mdl-checkbox__label checkbox-text">
+                Childcare
+              </span>
+            </label>
+        	</span>
+        	<span class="cbxWrapper">
+            <label id="lblMeditation" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect choices mdl-badge mdl-badge--overlap" data-badge="0" for="meditation">
+              <input type="checkbox" id="meditation" class="mdl-checkbox__input" checked> 
+              <span class="mdl-checkbox__label checkbox-text">
+        		    Meditation
+              </span>
+            </label>
+        	</span>
+        	<span class="cbxWrapper">
+            <label id="lblSpeaker" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect choices mdl-badge mdl-badge--overlap" data-badge="0" for="speaker">
+              <input type="checkbox" id="speaker" class="mdl-checkbox__input" checked> 
+              <span class="mdl-checkbox__label checkbox-text">
+        		    Speaker
+              </span>
+            </label>
+        	</span>
+        	<span class="cbxWrapper">
+            <label id="lblStep" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect choices mdl-badge mdl-badge--overlap" data-badge="0" for="step">
+              <input type="checkbox" id="step" class="mdl-checkbox__input" checked> 
+              <span class="mdl-checkbox__label checkbox-text">
+        		    Step
+              </span>
+            </label>
+        	</span>
+        	<span class="cbxWrapper">
+            <label id="lblSpanish" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect choices mdl-badge mdl-badge--overlap" data-badge="0" for="spanish">
+              <input type="checkbox" id="spanish" class="mdl-checkbox__input" checked> 
+              <span class="mdl-checkbox__label checkbox-text">
+        		    Español
+              </span>
+            </label>
+        	</span>
+        	<span class="cbxWrapper">
+            <label id="lblBigBook" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect choices mdl-badge mdl-badge--overlap" data-badge="0" for="bigBook">
+              <input type="checkbox" id="bigBook" class="mdl-checkbox__input" checked> 
+              <span class="mdl-checkbox__label checkbox-text">
+        		    Big Book
+              </span>
+            </label>
+        	</span>
+        	<span class="cbxWrapper">
+            <label id="lblDiscussion" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect choices mdl-badge mdl-badge--overlap" data-badge="0" for="discussion">
+              <input type="checkbox" id="discussion" class="mdl-checkbox__input" checked> 
+              <span class="mdl-checkbox__label checkbox-text">
+        		    Discussion
+              </span>
+            </label>
+        	</span>
+        	<span class="cbxWrapper">
+            <label id="lblTradition" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect choices mdl-badge mdl-badge--overlap" data-badge="0" for="tradition">
+              <input type="checkbox" id="tradition" class="mdl-checkbox__input" checked> 
+              <span class="mdl-checkbox__label checkbox-text">
+        		    Tradition
+              </span>
+            </label>
+        	</span>
+        	<span class="cbxWrapper">
+            <label id="lblBeginner" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect choices mdl-badge mdl-badge--overlap" data-badge="0" for="beginner">
+              <input type="checkbox" id="beginner" class="mdl-checkbox__input" checked> 
+              <span class="mdl-checkbox__label checkbox-text">
+        		    Beginner
+              </span>
+            </label>
+        	</span>
+        	<span class="cbxWrapper">
+            <label id="lblAm" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect choices mdl-badge mdl-badge--overlap" data-badge="0" for="am">
+              <input type="checkbox" id="am" class="mdl-checkbox__input" checked> 
+              <span class="mdl-checkbox__label checkbox-text">
+        		    AM
+              </span>
+            </label>
+        	</span>
+        	<span class="cbxWrapper">
+            <label id="lblNoon" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect choices mdl-badge mdl-badge--overlap" data-badge="0" for="noon">
+              <input type="checkbox" id="noon" class="mdl-checkbox__input" checked>
+              <span class="mdl-checkbox__label checkbox-text">
+        		    Noon
+              </span>
+            </label>
+        	</span>
+        	<span class="cbxWrapper">
+            <label id="lblPm" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect choices mdl-badge mdl-badge--overlap" data-badge="0" for="pm">
+              <input type="checkbox" id="pm" class="mdl-checkbox__input" checked>
+              <span class="mdl-checkbox__label checkbox-text">
+        		    PM
+              </span>
+            </label>
+        	</span>
+        	<span class="cbxWrapper">
+            <label id="lblEvery" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect choices mdl-badge mdl-badge--overlap" data-badge="0" for="every">
+              <input type="checkbox" id="every" class="mdl-checkbox__input" checked>
+              <span class="mdl-checkbox__label checkbox-text bold">
+        		    All
+              </span>
+            </label>
+        	</span>
+        </span>
+        <hr class="hrTopBottom">
+        <div id="divTopBottom">
+          <span id="logo">GET<span class="font300">AA</span>.ORG <span class="notation">beta</span></span>
+        </div>
+        <div class="actionPane">
+        	<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-color--grey-200 actionButtonTop">
+        	  <img src="images/down.svg" alt="show" class="menuIcon" style="height:48px">
+        	</button>  
+        </div>
+      </div>
+    </div>
+    <div id="rack-logo">
+      <span class="plus"> &#43; </span>
+      <a href="http://www.rack.pub">
+        <img src='images/rack.pub.png' alt='www.rack.pub' style="height:14px">
+      </a>      
+    </div>
+    <div id="meetings-manager">
+      <a href="admin" class="subtitle">
+        Meetings Manager
+      </a>      
+    </div>
+    <div id="report-error">
+      <a href="mailto:admin@getaa.org" class="subtitle">
+        Report a meeting error
+      </a>    
+    </div>
+    <div id="toast" class="mdl-js-snackbar mdl-snackbar">
+      <div class="mdl-snackbar__text"></div>
+      <button class="mdl-snackbar__action" type="button"></button>
+    </div>
+    <script src='/js/getaa.min.js'></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD77MKXE5L-T_byxewvLrhFqn5cA0m-t4s&callback=getAA.initMap"></script>
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		  ga('create', 'UA-75738524-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
+	</body>
+</html>

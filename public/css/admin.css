@@ -1,0 +1,393 @@
+*{
+    font-family: 'Roboto', sans-serif;
+}
+.hidden{
+    visibility: hidden;
+}
+#adminTabs{
+    margin-top:-12px;
+}
+.ajaxed{
+
+}
+.importCard{
+  width:420px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:20px;
+}
+
+.output{
+    color:#616161;
+    margin-bottom:-4px;
+}
+#out{
+    margin-top:20px;
+}
+#dropzone{
+    border:6px dashed gray;
+    padding:12px;
+    -webkit-box-shadow: inset 0px 0px 13px -2px rgba(0,0,0,0.58);
+    -moz-box-shadow: inset 0px 0px 13px -2px rgba(0,0,0,0.58);
+    box-shadow: inset 0px 0px 13px -2px rgba(0,0,0,0.58);
+}
+.browse{
+    position:absolute;
+    left:6px;
+}
+.mdl-card__actions{
+    text-align:right;
+    height:3.4em;
+}
+.import{
+    position:absolute;
+    right:6px;
+}
+#files {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.demo-card-square.mdl-card {
+  width: 420px;
+  height: 520px;
+}
+.demo-card-square > .mdl-card__title {
+  color: #e0e0e0;
+  text-align:center;
+}
+.secondary{
+    font-size:small;
+    position:relative;
+    top:-2px;
+    left:6px;
+}
+#lalClosedMeeting{
+    margin-left:12px;
+}
+.half{
+  margin-left:2px;
+  margin-right:2px;
+  width: 226px; 
+}
+.third{
+  margin-left:2px;
+  margin-right:2px;  
+  width: 149px;     
+}
+
+#lblAgree{
+    margin-right:12px;
+    width:auto;
+}
+#play{
+    margin-left:12px;
+}
+.whole{
+  
+  width: 100%;     
+}
+#delete{
+    display:none;
+}
+#latitude{
+  display:none;   
+}
+#longitude{
+  display:none;   
+}
+.formMargin{
+    margin-left:10%;
+    margin-right:10%;
+}
+.ddsd{
+    border-style:solid;
+    border-color:#e0e0e0;
+    border-width: 0 0 1px 0;
+    color:#BDBDBD;
+    font-family: 'Roboto', sans-serif;
+    font-size:1.2em;
+    font-weight:100;
+    outline: 0;
+    margin-top:1.4em;
+    margin-right:2px; 
+    width: 146px;
+    text-transform:capitalize;    
+}
+.capitalize{
+    text-transform: capitalize;
+}
+.aMeeting{
+    margin-left:-16px;
+}
+.ddst{
+    border-style:solid;
+    border-color:#e0e0e0;
+    border-width: 0 0 1px 0;
+    color:#BDBDBD;
+    font-family: 'Roboto', sans-serif;
+    font-size:1.2em;
+    font-weight:100;
+    outline: 0;
+    margin-top:1.4em;
+  margin-left:2px;
+  margin-right:2px; 
+    width:64px;
+    text-transform:capitalize;   
+}
+.dds{
+    border-style:solid;
+    border-color:#e0e0e0;
+    border-width: 0 0 1px 0;
+    color:#9e9e9e;
+    font-family: 'Roboto', sans-serif;
+    font-size:1.2em;
+    font-weight:400;
+    outline: 0;
+    margin-top:1.4em;
+    margin-left:20px;
+    width:160px;
+    text-transform:capitalize;
+}
+.floater{
+    float: left;
+    margin: 6px;
+}
+.action-left{
+    position:absolute;
+    left:12px;
+}
+#continue{
+    margin-right:4px;
+}
+.notice{
+    font-size:75%;
+    line-height:1.5em;
+    margin-top:20px;
+    width:512px;
+    margin-left:auto;
+    margin-right:auto;
+}
+.demo-card-wide.mdl-card {
+    width: 512px;
+    margin: 0 auto;
+
+}
+.demo-card-wide > .mdl-card__title {
+    color: #fff;
+    height: 176px;
+    background: url('../images/langlois.jpg') center / cover;
+}
+#meetingCard.demo-card-wide > .mdl-card__title {
+    color: #fff;
+    height: 128px;
+    background: url('../images/bridge.jpg') center / cover;
+}
+.demo-card-wide > .mdl-card__menu {
+    color: #fff;
+}
+.mdl-card__actions {
+    text-align:center;
+}
+.meetings-list{
+    max-width:800px;
+    margin-left:auto;
+    margin-right:auto;
+    text-transform:capitalize;
+}
+.lowercase{
+    text-transform: lowercase;
+}
+.mdl-list__item-secondary-content a:hover{
+    cursor:default;
+}
+.marginB{
+    margin-bottom:20px;
+}
+.middle { 
+    vertical-align: middle; 
+}
+.sm-icon{
+    font-size:100%;
+}
+.middleImage{
+    vertical-align: -10%;
+}
+#newMeeting{
+   
+}
+#meetingsArea{
+    display:inline;
+}
+.blue{
+    color:#3367d6;
+}
+.legend{
+    border:solid black 2px;
+    padding:20px;
+}
+.imgL{
+    vertical-align:-15%;
+}
+#marquee{
+    margin-top:32px;
+    font-size:3em;
+    color:#0f9d58;
+    font-weight:100;
+}
+.topTitle{
+    margin-top:1em;
+}
+.meetingsList{
+    margin-top:20px;
+}
+.ajaxed{
+    margin-top:60px;
+
+}
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) 
+}
+.msg {
+    position: absolute;
+    font-size: 120px;
+    font-size: 20vw;
+    z-index:100;
+    color:#3367d6;
+    bottom: 0;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%) 
+}
+    
+input.loading {
+    background: url(../images/loading.gif) no-repeat center;
+    background-size:contain;
+}
+#close{
+    font-weight:bold;
+    color:#3367d6;
+}
+#chip{
+    color:#9e9e9e;
+    position:absolute;
+    top:20px;
+    right:20px;
+    display:none;
+    background:#f5f5f5;
+    border-top-left-radius:18px;
+    border-top-right-radius:18px;
+    border-bottom-right-radius:18px;
+    border-bottom-left-radius:18px;
+    -webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.5);
+}
+#chip:hover{
+    cursor:pointer;
+}
+.round{
+    border-radius:50%;
+}
+.topMargin{
+    margin-top:10%;
+}
+
+.textCenter{
+    text-align:center;
+}
+
+.login{
+    margin-top:20px;
+
+    width:160px;
+
+}
+.myLogin{
+    border: 2px solid;
+    border-radius: 5px;
+    border-color: #e0e0e0;
+    text-align:center;
+}
+.loginBtn{
+    width:200px;
+    margin:10px;
+}
+.loginGroup{
+    text-align:center;
+}
+
+.right{
+    text-align:right;
+}
+.floatRight{
+    text-align:right;
+    width:100%;
+}
+.pull-left{
+    margin-left:0;
+}
+#dock{
+    margin-top:20px;
+}
+.outline{
+    margin-top:20px;
+}
+
+.mdl-dialog {
+  border: none;
+  box-shadow: 0 9px 46px 8px rgba(0, 0, 0, 0.14), 0 11px 15px -7px rgba(0, 0, 0, 0.12), 0 24px 38px 3px rgba(0, 0, 0, 0.2);
+  width: 280px; }
+  .mdl-dialog__title {
+    padding: 24px 24px 0;
+    margin: 0;
+    font-size: 2.5rem; }
+  .mdl-dialog__actions {
+    padding: 8px 8px 8px 24px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row-reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap; }
+    .mdl-dialog__actions > * {
+      margin-right: 8px;
+      height: 36px; }
+      .mdl-dialog__actions > *:first-child {
+        margin-right: 0; }
+    .mdl-dialog__actions--full-width {
+      padding: 0 0 8px 0; }
+      .mdl-dialog__actions--full-width > * {
+        height: 48px;
+        -webkit-flex: 0 0 100%;
+            -ms-flex: 0 0 100%;
+                flex: 0 0 100%;
+        padding-right: 16px;
+        margin-right: 0;
+        text-align: right; }
+  .mdl-dialog__content {
+    padding: 20px 24px 24px 24px;
+    color: rgba(0,0,0, 0.54); }
+
+#container{
+    max-width:80%;
+    margin-left:auto;
+    margin-right:auto;
+}
+/* Portrait and Landscape */
+@media only screen 
+  and (max-device-width: 736px) { 
+    #container{max-width:96%;}
+}
