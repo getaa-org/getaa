@@ -1,7 +1,7 @@
 # getaa.org
 ## Synopsis
 
-GetAA.org is a web application targeted at mobile devices that assist people in finding an Alcoholics Anonymous meeting in their area.
+GetAA.org is a web application targeted at mobile devices assisting people in finding todays Alcoholics Anonymous meetings in their area.
 
 ## Code Example
 
