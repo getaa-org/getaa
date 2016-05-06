@@ -14,32 +14,21 @@ var getAA = (function() {
     
     //Public method
     pub.initMap = function () {
-        var today = getDayOfWeek();
         map = new google.maps.Map(doc.getElementById('map'), {
             //center: {lat: 29.938659, lng: -90.118807},
-            zoom: 11,
+            zoom: 12,
             minZoom: 10,
             mapTypeControl: false,
         });
         infoWindow = new google.maps.InfoWindow({});
-        // Try HTML5 geolocation.
         if (navigator.geolocation) {
+        // Try HTML5 geolocation
             navigator.geolocation.getCurrentPosition(function(position) {
-                var lat = position.coords.latitude;
-                var lng = position.coords.longitude;
-                var pos = {
-                    lat: lat,
-                    lng: lng
-                };
-                infoWindow.setPosition(pos);
-                infoWindow.setContent('You are here.');
-                map.setCenter(pos);
-                doc.getElementById('meetings-manager').style.display = 'initial';
-                doc.getElementById('report-error').style.display = 'initial';
-                doc.getElementById('rack-logo').style.display = 'initial';
-                getAA.initMenu(today);
-                loadQuery(lat,lng,today);
+                lat = position.coords.latitude;
+                lng = position.coords.longitude;
+                loadMap(lat,lng);
             }, function() {
+                
                 handleLocationError(true, infoWindow, map.getCenter());
             });
         } else {
@@ -99,6 +88,26 @@ var getAA = (function() {
             menuIcon.classList.toggle("menuIconUp");
         });
     };
+    
+    function loadMap(lat,lng){
+                var pos = {
+                    lat: lat,
+                    lng: lng
+                };
+                var today = getDayOfWeek();
+                infoWindow.setPosition(pos);
+                infoWindow.setContent('You are here.');
+                map.setCenter(pos);
+                doc.getElementById('meetings-manager').style.display = 'initial';
+                doc.getElementById('report-error').style.display = 'initial';
+                doc.getElementById('rack-logo').style.display = 'initial';
+                doc.getElementById('btnMenu').style.display = 'initial';
+                doc.getElementById('landing-card').style.display = 'none';
+                getAA.initMenu(today);
+                loadQuery(lat,lng,today);
+    }
+    
+    
     function unselectDays (arr){
         for (var i = 0, len = arr.length; i < len; i++) {
                 arr[i].classList.remove("day-selected");
@@ -303,6 +312,8 @@ var getAA = (function() {
         pm,
         every,
     ];
+    var locateSubmit = doc.getElementById("locate-submit");
+    var loc = doc.querySelector('#manual-location');
 
     function meetingBadgesUp (meeting){
         if(meeting.val().meetingOpen){lblOpenMeeting.dataset.badge = Number(lblOpenMeeting.dataset.badge) + 1;}
@@ -347,11 +358,59 @@ var getAA = (function() {
         clearMarkers();
     }
 
-    doc.addEventListener("DOMContentLoaded", function(event) { 
+    doc.addEventListener("DOMContentLoaded", function(event) {
+        
         window.snackbarContainer = doc.querySelector('#toast');
         window.componentHandler.upgradeAllRegistered();
         addOptionsListeners(options);
+        addLocateListener();
     });
+    
+    function addLocateListener(){
+        //var locateSubmit = doc.getElementById("locate-submit");
+        //var loc = doc.querySelector('#manual-location');
+        locateSubmit.addEventListener("click", function(){
+            //first geocode
+            if(isValidAddress(loc.value)){
+                geoCode(loc.value);
+                //var myResult = geoCode(loc.value);
+            } else{
+                toast('Address contains invalid characters');
+            }
+        });
+        
+        
+        loc.onkeypress = function(e) {
+            var event = e || window.event;
+            var charCode = event.which || event.keyCode;
+        
+            if ( charCode == '13' ) {
+              locateSubmit.click();
+            }
+        };
+        
+        
+        
+    }
+    function isValidAddress(add){
+        return /[A-Za-z0-9'\.\-\s\,]/.test(add); //
+    }
+    // ********************************************************************************************************
+    function geoCode(add){
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({'address': add}, function(results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                myResult = results[0].geometry.location; // reference LatLng value
+                var myArray = myResult.toString().slice(1, -1).split(', ');
+                var lat = parseFloat(myArray[0]);
+                var lng = parseFloat(myArray[1]);
+                loadMap(lat,lng);
+                
+            } else {
+                toast('Location not found.  Please adjust address.  Error: ', status);
+            }
+        });
+    }    
     
     function addOptionsListeners(arr){
         for (var i = 0, len = arr.length; i < len; i++) {
@@ -417,7 +476,7 @@ var getAA = (function() {
     function loadQuery(lat,lng,today){
         var geoKeys = [];
         var records=[];
-        toastUp('Fetching Meetings...');
+        
         
         var geoQuery = geofire.query({
             center: [lat,lng],
@@ -430,17 +489,24 @@ var getAA = (function() {
     
         // GeoKeys now in array
         var onReadyRegistration = geoQuery.on("ready", function() {
-            // Get recordset for each key into sites array
-            readFirebaseNodes(geoKeys).then(function(value) {
-                //filter for today
-                var todaysMeetings = dayFilter(today);
-                drop(todaysMeetings);
-            }, function(err) {
-              console.log(err); // Error!
-            });
+            
+            if(geoKeys.length > 0){
+                toastUp('Fetching Meetings...');
+                // Get recordset for each key into sites array
+                readFirebaseNodes(geoKeys).then(function(value) {
+                    //filter for today
+                    var todaysMeetings = dayFilter(today);
+                    drop(todaysMeetings);
+                }, function(err) {
+                  console.log(err); // Error!
+                });
+            } else {
+                //toast('got no meetings here');
+                toastUp('<i class="material-icons icon-align">mode_comment</i> No area meetings found.  You are encouraged to volunteer to add them.  Start by clicking Meeting Manager to become a volunteer site administrator!');
+                toastDown(2000);
+            }
         });
     }
-    
     
     function readFirebaseNodes(keys) {
         //then we can fetch the meeting detail for each one
@@ -471,7 +537,3 @@ var getAA = (function() {
   //Return just the public parts
   return pub;
 }());
-
-
-
-

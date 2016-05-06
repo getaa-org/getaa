@@ -127,12 +127,62 @@ html, body {
     height:0px;
     bottom:2px;
 }
+#landing-card{
+    position:fixed;
+    top:10%;
+    left:50%;
+    transform: translate(-50%);
+    width:512px;
+}
+
+.demo-card-wide.mdl-card {
+  width: 512px;
+}
+#homeCard.demo-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 176px;
+  background: url('../images/home.jpg') center / cover;
+}
+.mdl-card__title-text{
+    margin-top:-80px;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+.xbold{
+    position:relative;
+    top:-120px;
+}
+#manual-location-div{
+    position:relative;
+    left:50%;
+    transform: translate(-50%);
+}
+#locate-submit{
+    text-align:right;
+    margin-right:12px;
+    width:auto;
+}
+
+.notice{
+    font-size:75%;
+    line-height:1.5em;
+    margin-top:20px;
+    
+    margin-left:auto;
+    margin-right:auto;
+}
+
 #rack-logo{
     position:fixed;
     bottom:3px;
     left:72px;
     text-align:center;
     font-family: 'Roboto', sans-serif;
+    display:none;
+}
+
+#btnMenu{
     display:none;
 }
 #meetings-manager{

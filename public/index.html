@@ -201,10 +201,37 @@
           <span id="logo">GET<span class="font300">AA</span>.ORG <span class="notation">beta</span></span>
         </div>
         <div class="actionPane">
-        	<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-color--grey-200 actionButtonTop">
+        	<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-color--grey-200 actionButtonTop" id="btnMenu">
         	  <img src="images/down.svg" alt="show" class="menuIcon" style="height:48px">
         	</button>  
         </div>
+      </div>
+    </div>
+    <div id="landing-card">
+      <div class="demo-card-wide mdl-card mdl-shadow--2dp outline" id="homeCard">
+      	<div class="mdl-card__title">
+      		<h2 class="mdl-card__title-text mdl-color-text--grey-900  xbold">Find Today&#39;s AA Meetings</h2>
+      	</div>
+      	<div class="mdl-card__supporting-text">
+        	<p>
+          	This web application displays Alcoholocs Anonymous Meetings in your area.  Most web browsers can, with permission, 
+          	automatically locate you.  Alternatively, manually enter your general location below.
+        	</p>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="manual-location-div">
+            <input class="mdl-textfield__input" type="text" id="manual-location">
+            <label class="mdl-textfield__label" for="manual-location">Location...</label>
+          </div>
+          <p class="notice">
+            <img src="../images/ic_info_outline_black_24px.svg" height="18px" class="floater" alt="info"> 
+            Anonymous usage is our intent. We do not record any personal information or associate location data with endpoint identifiers.
+          </p>
+      	</div>
+      	<div class="mdl-card__actions mdl-card--border">
+      	  <div class="mdl-layout-spacer"></div>
+          <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id="locate-submit">
+            Find Meetings
+          </a>
+      	</div>
       </div>
     </div>
     <div id="rack-logo">
@@ -213,6 +240,9 @@
         <img src='images/rack.pub.png' alt='www.rack.pub' style="height:14px">
       </a>      
     </div>
+    <div id="no-meetings">
+    <span class="clsNoMeetings">No meetings found in your area.  We need volunteers to enter area meetings.  Sign up as a volunteer here.</span>
+    </div>    
     <div id="meetings-manager">
       <a href="admin" class="subtitle">
         Meetings Manager
