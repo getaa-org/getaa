@@ -2,10 +2,10 @@
 ## Synopsis
 
 GetAA.org is a web application targeted at mobile devices assisting people in finding todays Alcoholics Anonymous meetings in their area.
-<img src="https://getaa.org/images/screenshot.jpg" alt="Homepage Screenshot" />
+
 ## Code Example
 
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
+<img src="https://getaa.org/images/screenshot.jpg" alt="Homepage Screenshot" />
 
 ## Motivation
 
