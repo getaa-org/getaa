@@ -13,6 +13,7 @@
 		<!-- Format as Primary Keyword - Secondary Keyword | Brand Name, keep under 55 characters -->
 		<title>Find AA Meetings</title>
 		<!-- Minimize the number of CSS files for performance -->
+		
 		<link href="/css/getaa.min.css" rel="stylesheet" type="text/css" />
     
     <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
@@ -203,8 +204,11 @@
         <div class="actionPane">
         	<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-color--grey-200 actionButtonTop" id="btnMenu">
         	  <img src="images/down.svg" alt="show" class="menuIcon" style="height:48px">
-        	</button>  
+        	</button>
         </div>
+
+        <div id="change-location"><img src="../images/map.svg" height="24" class="cLoc"></div>
+        
       </div>
     </div>
     <div id="landing-card">
@@ -232,6 +236,11 @@
             Find Meetings
           </a>
       	</div>
+        <div class="mdl-card__menu">
+          <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-color-text--grey-900" id="close-landing-card">
+            <img src="../images/close.svg" alt="close" style="margin-bottom:2px">
+          </button>
+        </div>
       </div>
     </div>
     <div id="rack-logo">
@@ -258,6 +267,7 @@
       <button class="mdl-snackbar__action" type="button"></button>
     </div>
     <script src='/js/getaa.min.js'></script>
+    
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD77MKXE5L-T_byxewvLrhFqn5cA0m-t4s&callback=getAA.initMap"></script>
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

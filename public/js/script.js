@@ -95,19 +95,29 @@ var getAA = (function() {
                     lng: lng
                 };
                 var today = getDayOfWeek();
+                var changeLocation = doc.getElementById('change-location');
+                var landingCard = doc.getElementById('landing-card');
+                var closeLandingCard = doc.getElementById('close-landing-card');
                 infoWindow.setPosition(pos);
                 infoWindow.setContent('You are here.');
                 map.setCenter(pos);
-                doc.getElementById('meetings-manager').style.display = 'initial';
-                doc.getElementById('report-error').style.display = 'initial';
-                doc.getElementById('rack-logo').style.display = 'initial';
-                doc.getElementById('btnMenu').style.display = 'initial';
-                doc.getElementById('landing-card').style.display = 'none';
+                landingCard.style.display = 'none';
+                doc.getElementById('meetings-manager').style.display = 'inline';
+                doc.getElementById('report-error').style.display = 'inline';
+                doc.getElementById('rack-logo').style.display = 'inline';
+                doc.getElementById('btnMenu').style.display = 'inline';
+                changeLocation.style.display = 'inline';                
+                
                 getAA.initMenu(today);
                 loadQuery(lat,lng,today);
+                changeLocation.addEventListener("click", function(){
+                    landingCard.style.display = 'inline';
+                });
+                closeLandingCard.addEventListener("click", function(){
+                    landingCard.style.display = 'none';
+                });
     }
-    
-    
+
     function unselectDays (arr){
         for (var i = 0, len = arr.length; i < len; i++) {
                 arr[i].classList.remove("day-selected");
@@ -379,7 +389,6 @@ var getAA = (function() {
             }
         });
         
-        
         loc.onkeypress = function(e) {
             var event = e || window.event;
             var charCode = event.which || event.keyCode;
@@ -388,14 +397,11 @@ var getAA = (function() {
               locateSubmit.click();
             }
         };
-        
-        
-        
     }
     function isValidAddress(add){
         return /[A-Za-z0-9'\.\-\s\,]/.test(add); //
     }
-    // ********************************************************************************************************
+
     function geoCode(add){
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode({'address': add}, function(results, status) {
@@ -501,8 +507,7 @@ var getAA = (function() {
                   console.log(err); // Error!
                 });
             } else {
-                //toast('got no meetings here');
-                toastUp('<i class="material-icons icon-align">mode_comment</i> No area meetings found.  You are encouraged to volunteer to add them.  Start by clicking Meeting Manager to become a volunteer site administrator!');
+                toastUp('No area meetings found.  You are encouraged to volunteer to add them.  Click <a href="/admin">Meetings Manager</a> to become a site administrator.');
                 toastDown(2000);
             }
         });
