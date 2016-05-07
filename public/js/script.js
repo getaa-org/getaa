@@ -11,6 +11,27 @@ var getAA = (function() {
     var doc = document;
     var timer = 10; //in milliseconds
     var radius = 96; //in kilometers
+
+    //var weekdays = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
+    var menuDiv = doc.getElementById('menu');
+    var menuButton = doc.querySelector ('.actionButtonTop');
+    var menuIcon = doc.querySelector ('.menuIcon');
+    var sunday = doc.querySelector('#sunday');
+    var monday = doc.querySelector ('#monday');
+    var tuesday = doc.querySelector ('#tuesday');
+    var wednesday = doc.querySelector ('#wednesday');
+    var thursday = doc.querySelector ('#thursday');
+    var friday = doc.querySelector ('#friday');
+    var saturday = doc.querySelector ('#saturday');
+    var weekdays = [sunday,monday,tuesday,wednesday,thursday,friday,saturday];
+
+    menuButton.addEventListener("click", function(){
+        menuDiv.classList.toggle("menuHidden");
+        menuDiv.classList.toggle("menuShown");
+        menuIcon.classList.toggle("flip");
+        menuIcon.classList.toggle("menuIconDown");
+        menuIcon.classList.toggle("menuIconUp");
+    });
     
     //Public method
     pub.initMap = function () {
@@ -37,16 +58,9 @@ var getAA = (function() {
         }
     };
     pub.initMenu = function (weekday) {
-        var menuDiv = doc.getElementById('menu');
-        var menuButton = doc.querySelector ('.actionButtonTop');
-        var menuIcon = doc.querySelector ('.menuIcon');
-        var sunday = doc.querySelector('#sunday');
-        var monday = doc.querySelector ('#monday');
-        var tuesday = doc.querySelector ('#tuesday');
-        var wednesday = doc.querySelector ('#wednesday');
-        var thursday = doc.querySelector ('#thursday');
-        var friday = doc.querySelector ('#friday');
-        var saturday = doc.querySelector ('#saturday');
+        unselectDays (weekdays);
+// ********************************
+        resetBadges ();
         switch(weekday) {
             case 'sunday':
                 sunday.classList.toggle("day-unselected");
@@ -77,16 +91,9 @@ var getAA = (function() {
                 saturday.classList.toggle("day-selected");
                 break;
         }
-        var weekdays = [sunday,monday,tuesday,wednesday,thursday,friday,saturday];
         addDayListener(weekdays);
         menuIcon.className += " menuIconDown";
-        menuButton.addEventListener("click", function(){
-            menuDiv.classList.toggle("menuHidden");
-            menuDiv.classList.toggle("menuShown");
-            menuIcon.classList.toggle("flip");
-            menuIcon.classList.toggle("menuIconDown");
-            menuIcon.classList.toggle("menuIconUp");
-        });
+//****************mnubtn list went here
     };
     
     function loadMap(lat,lng){
@@ -107,7 +114,7 @@ var getAA = (function() {
                 doc.getElementById('rack-logo').style.display = 'inline';
                 doc.getElementById('btnMenu').style.display = 'inline';
                 changeLocation.style.display = 'inline';                
-                
+                // *************************************************************************
                 getAA.initMenu(today);
                 loadQuery(lat,lng,today);
                 changeLocation.addEventListener("click", function(){
@@ -411,7 +418,7 @@ var getAA = (function() {
                 var lat = parseFloat(myArray[0]);
                 var lng = parseFloat(myArray[1]);
                 loadMap(lat,lng);
-                
+                // **************************************************************************************
             } else {
                 toast('Location not found.  Please adjust address.  Error: ', status);
             }
