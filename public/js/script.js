@@ -24,6 +24,13 @@ var getAA = (function() {
     var friday = doc.querySelector ('#friday');
     var saturday = doc.querySelector ('#saturday');
     var weekdays = [sunday,monday,tuesday,wednesday,thursday,friday,saturday];
+    
+    var changeLocation = doc.getElementById('change-location');
+    var landingCard = doc.getElementById('landing-card');
+    var closeLandingCard = doc.getElementById('close-landing-card');
+
+    var btnMenu = doc.getElementById('btnMenu');
+    var mapElement = doc.getElementById('map');
 
     menuButton.addEventListener("click", function(){
         menuDiv.classList.toggle("menuHidden");
@@ -35,12 +42,30 @@ var getAA = (function() {
     
     //Public method
     pub.initMap = function () {
+        
         map = new google.maps.Map(doc.getElementById('map'), {
             //center: {lat: 29.938659, lng: -90.118807},
-            zoom: 12,
+            zoom: 11,
             minZoom: 10,
             mapTypeControl: false,
         });
+        
+        var logoControlDiv = document.createElement('DIV');
+        var logoControl = new MyLogoControl(logoControlDiv);
+        logoControlDiv.index = 0; // used for ordering
+        map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(logoControlDiv);
+        
+        var mgrControlDiv = document.createElement('DIV');
+        var mgrControl = new MeetingManagerControl(mgrControlDiv);
+        mgrControlDiv.index = 1; // used for ordering
+        map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(mgrControlDiv);
+        
+        
+        var errControlDiv = document.createElement('DIV');
+        var errControl = new ReportErrorControl(errControlDiv);
+        errControlDiv.index = 0; // used for ordering
+        map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(errControlDiv);    
+     
         infoWindow = new google.maps.InfoWindow({});
         if (navigator.geolocation) {
         // Try HTML5 geolocation
@@ -102,27 +127,26 @@ var getAA = (function() {
                     lng: lng
                 };
                 var today = getDayOfWeek();
-                var changeLocation = doc.getElementById('change-location');
-                var landingCard = doc.getElementById('landing-card');
-                var closeLandingCard = doc.getElementById('close-landing-card');
+
+
+
                 infoWindow.setPosition(pos);
                 infoWindow.setContent('You are here.');
                 map.setCenter(pos);
                 landingCard.style.display = 'none';
-                doc.getElementById('meetings-manager').style.display = 'inline';
-                doc.getElementById('report-error').style.display = 'inline';
-                doc.getElementById('rack-logo').style.display = 'inline';
-                doc.getElementById('btnMenu').style.display = 'inline';
-                changeLocation.style.display = 'inline';                
+                btnMenu.style.display = 'inline';
+                mapElement.style.height = "100%";
+                changeLocation.style.display = 'inline';
+                
+                google.maps.event.trigger(map, 'resize');
+                //height: 100%;
+                                
                 // *************************************************************************
                 getAA.initMenu(today);
                 loadQuery(lat,lng,today);
-                changeLocation.addEventListener("click", function(){
-                    landingCard.style.display = 'inline';
-                });
-                closeLandingCard.addEventListener("click", function(){
-                    landingCard.style.display = 'none';
-                });
+
+
+
     }
 
     function unselectDays (arr){
@@ -169,6 +193,7 @@ var getAA = (function() {
         setTimeout(function () {
             var toast = doc.getElementById("toast");
             toast.classList.remove("mdl-snackbar--active");
+            toast.setAttribute('aria-hidden', 'true');
         }, timer * count);
     }
     function clearMarkers(del) {
@@ -376,11 +401,20 @@ var getAA = (function() {
     }
 
     doc.addEventListener("DOMContentLoaded", function(event) {
-        
         window.snackbarContainer = doc.querySelector('#toast');
         window.componentHandler.upgradeAllRegistered();
         addOptionsListeners(options);
         addLocateListener();
+        
+        changeLocation.addEventListener("click", function(){
+            doc.getElementById('map').style.height = "0";
+            landingCard.style.display = 'inline';
+        });
+        closeLandingCard.addEventListener("click", function(){
+            landingCard.style.display = 'none';
+            doc.getElementById('map').style.height = "100%";
+            google.maps.event.trigger(map, 'resize');
+        });
     });
     
     function addLocateListener(){
@@ -514,6 +548,7 @@ var getAA = (function() {
                   console.log(err); // Error!
                 });
             } else {
+                console.log('var onReadyRegistration tup');
                 toastUp('No area meetings found.  You are encouraged to volunteer to add them.  Click <a href="/admin">Meetings Manager</a> to become a site administrator.');
                 toastDown(2000);
             }
@@ -546,6 +581,57 @@ var getAA = (function() {
             addMarkerWithTimeout(filteredMeetings[i], i * timer);
         }
     }
+    
+    
+    function MyLogoControl(controlDiv) {
+        controlDiv.style.padding = '5px';
+        var logo = document.createElement('IMG');
+        logo.src = '../images/rack.pub.png';
+        logo.style.cursor = 'pointer';
+        logo.style.height = "16px";
+        controlDiv.appendChild(logo);
+    
+        google.maps.event.addDomListener(logo, 'click', function() {
+            window.location = 'http://www.rack.pub'; 
+        });
+    }
+
+    function MeetingManagerControl(controlDiv) {
+        controlDiv.style.padding = '5px';
+        var data = document.createElement('DIV');
+        var t = document.createTextNode("Meetings Manager");     // Create a text node
+        data.appendChild(t);
+        data.style.cursor = 'pointer';
+        data.style.height = "16px";
+        data.style.backgroundColor = "rgb(255, 255, 255)";
+        data.style.backgroundColor = "rgba(255, 255, 255, 0.5)";
+        data.style.fontSize = "10px";
+        data.style.fontFamily = '"Roboto", sans-serif';
+        controlDiv.appendChild(data);
+    
+        google.maps.event.addDomListener(data, 'click', function() {
+            window.location = '/admin'; 
+        });
+    }
+    
+    function ReportErrorControl(controlDiv) {
+        controlDiv.style.padding = '5px';
+        var data = document.createElement('DIV');
+        var t = document.createTextNode("Report a Meeting Error");     // Create a text node
+        data.appendChild(t);
+        data.style.cursor = 'pointer';
+        data.style.height = "16px";
+        data.style.backgroundColor = "rgb(255, 255, 255)";
+        data.style.backgroundColor = "rgba(255, 255, 255, 0.5)";
+        data.style.fontSize = "10px";
+        data.style.fontFamily = '"Roboto", sans-serif';
+        controlDiv.appendChild(data);
+    
+        google.maps.event.addDomListener(data, 'click', function() {
+            window.location.href = "mailto:admin@getaa.org";
+        });
+    }    
+    
   //Return just the public parts
   return pub;
 }());
