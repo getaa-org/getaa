@@ -1,3 +1,12 @@
+/*
+https://getaa.org v0.1 - Find Today's AA Meetings
+Created by Ron Royston, https://rack.pub
+https://github.com/rhroyston/getaa.org
+License: MIT
+
+control.topCenter.add.(html)
+*/
+
 //Revealing Module Pattern (Public & Private) w getAA namespace
 var getAA = (function() { 
     var pub = {};
@@ -127,9 +136,6 @@ var getAA = (function() {
                     lng: lng
                 };
                 var today = getDayOfWeek();
-
-
-
                 infoWindow.setPosition(pos);
                 infoWindow.setContent('You are here.');
                 map.setCenter(pos);
@@ -137,18 +143,10 @@ var getAA = (function() {
                 btnMenu.style.display = 'inline';
                 mapElement.style.height = "100%";
                 changeLocation.style.display = 'inline';
-                
                 google.maps.event.trigger(map, 'resize');
-                //height: 100%;
-                                
-                // *************************************************************************
                 getAA.initMenu(today);
                 loadQuery(lat,lng,today);
-
-
-
     }
-
     function unselectDays (arr){
         for (var i = 0, len = arr.length; i < len; i++) {
                 arr[i].classList.remove("day-selected");
@@ -548,7 +546,6 @@ var getAA = (function() {
                   console.log(err); // Error!
                 });
             } else {
-                console.log('var onReadyRegistration tup');
                 toastUp('No area meetings found.  You are encouraged to volunteer to add them.  Click <a href="/admin">Meetings Manager</a> to become a site administrator.');
                 toastDown(2000);
             }
@@ -582,18 +579,17 @@ var getAA = (function() {
         }
     }
     
-    
     function MyLogoControl(controlDiv) {
         controlDiv.style.padding = '5px';
         var logo = document.createElement('IMG');
         logo.src = '../images/rack.pub.png';
         logo.style.cursor = 'pointer';
         logo.style.height = "16px";
-        controlDiv.appendChild(logo);
+        //controlDiv.appendChild(logo);
     
-        google.maps.event.addDomListener(logo, 'click', function() {
-            window.location = 'http://www.rack.pub'; 
-        });
+        //google.maps.event.addDomListener(logo, 'click', function() {
+        //    window.location = 'http://www.rack.pub'; 
+        //});
     }
 
     function MeetingManagerControl(controlDiv) {
